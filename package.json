@@ -1,11 +1,15 @@
 {
-  "name": "MERN_SHOPPING_LIST",
+  "name": "mern_shopping_list",
   "version": "1.0.0",
   "description": "Shopping list built with the MERN stack",
   "main": "src/index.js",
   "scripts": {
+    "client-install": "npm install --prefix client",
     "start": "node src/index.js",
-    "server": "nodemon src/index.js"
+    "server": "nodemon src/index.js",
+    "client": "npm start --prefix client",
+    "client2": "cd client && npm start",
+    "dev": "concurrently \"npm run server \" \"npm run client\""
   },
   "keywords": [],
   "author": "",
