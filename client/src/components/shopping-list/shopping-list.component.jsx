@@ -10,7 +10,6 @@ import {
 import PropTypes from 'prop-types';
 
 import {
-	Container,
 	ListGroup,
 	ListGroupItem,
 	Button
@@ -24,46 +23,44 @@ const ShoppingList = ({ shoppingListItems, getItems, removeItem }) => {
 
 	return (
 		<div className="shopping-list-container">
-			<Container>
-				<Button
-					color="dark"
-					style={ { marginBottom: '2rem' } }
-					onClick={ () => {
-						const name = prompt('Enter shopping item name:');
-						if (name) {
-							// setItems([...items, { name }])
-						}
-					} }
-				>
-					Add item
-				</Button>
-				<ListGroup>
-					<TransitionGroup className="shopping-list">
-						{
-							shoppingListItems.map(({ id, name }) => (
-								<CSSTransition
-									key={ id }
-									timeout={ 500 }
-									classNames="fade"
-								>
-									<ListGroupItem>
-										<Button
-											className="remove-btn"
-											color="danger"
-											size="sm"
-											style={ { marginRight: '.75rem' } }
-											onClick={ () => removeItem(id) }
-										>
-											&times;
-										</Button>
-										{ name }
-									</ListGroupItem>
-								</CSSTransition>
-							))
-						}
-					</TransitionGroup>
-				</ListGroup>
-			</Container>
+			<Button
+				color="dark"
+				style={ { display: 'none', marginBottom: '2rem' } }
+				onClick={ () => {
+					const name = prompt('Enter shopping item name:');
+					if (name) {
+						// setItems([...items, { name }])
+					}
+				} }
+			>
+				Add item
+			</Button>
+			<ListGroup>
+				<TransitionGroup className="shopping-list">
+					{
+						shoppingListItems.map(({ _id: id, name }) => (
+							<CSSTransition
+								key={ id }
+								timeout={ 500 }
+								classNames="fade"
+							>
+								<ListGroupItem>
+									<Button
+										className="remove-btn"
+										color="danger"
+										size="sm"
+										style={ { marginRight: '.75rem' } }
+										onClick={ () => removeItem(id) }
+									>
+										&times;
+									</Button>
+									{ name }
+								</ListGroupItem>
+							</CSSTransition>
+						))
+					}
+				</TransitionGroup>
+			</ListGroup>
 		</div>
 	);
 };

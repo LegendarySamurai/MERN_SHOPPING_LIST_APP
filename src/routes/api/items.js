@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 
 router.get('/', async (req, res) => {
 	try {
-		const items = await Item.find();
+		const items = await Item.find().sort({ date: -1 });
 		res.send(items);
 	}
 	catch (err) {
